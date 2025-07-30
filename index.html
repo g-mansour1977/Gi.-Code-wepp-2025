@@ -125,17 +125,7 @@
 </head>
 <body>
 
-<!-- AUTHENTIFICATION -->
-<div id="auth">
-  <h2>🔐 Accès sécurisé</h2>
-  <p>Veuillez entrer le mot de passe pour accéder aux cours :</p>
-  <input type="password" id="motdepasse" placeholder="Mot de passe" />
-  <br>
-  <button onclick="verifierMotDePasse()">Valider</button>
-</div>
 
-<!-- COURS (MASQUÉ PAR DÉFAUT) -->
-<div id="cours">
 
 <header class="bandeau-accueil">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Flag_of_Senegal.svg/64px-Flag_of_Senegal.svg.png" alt="Drapeau du Sénégal" class="drapeau">
@@ -202,35 +192,6 @@
 
 </div>
 
-<script>
-  const MOT_DE_PASSE = "formation2025";
-  const DUREE_VALIDITE_MS = 60 * 60 * 1000; // 1 heure
-
-  const authDiv = document.getElementById("auth");
-  const coursDiv = document.getElementById("cours");
-
-  const heureValidation = localStorage.getItem("heureValidation");
-  const maintenant = Date.now();
-
-  if (heureValidation && maintenant - parseInt(heureValidation) < DUREE_VALIDITE_MS) {
-    afficherCours();
-  }
-
-  function verifierMotDePasse() {
-    const saisie = document.getElementById("motdepasse").value;
-    if (saisie === MOT_DE_PASSE) {
-      localStorage.setItem("heureValidation", Date.now().toString());
-      afficherCours();
-    } else {
-      alert("❌ Mot de passe incorrect !");
-    }
-  }
-
-  function afficherCours() {
-    authDiv.style.display = "none";
-    coursDiv.style.display = "block";
-  }
-</script>
 
 <footer style="text-align:center; padding:20px; background:#f0f0f0; margin-top: 2rem;">
   <p>📞 Contactez-nous au : <a href="tel:+221776813749">77 681 37 49</a></p>
